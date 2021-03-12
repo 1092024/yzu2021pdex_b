@@ -1,29 +1,42 @@
-
-#include <iostream>
+/**
+ * @file include的檔案
+ *
+ * @auther 1092024鄭語婕
+ */
+#include <iostream>  
 #include <string>
 using namespace std;
-class CCAR {
-private:
-string nickname;
-protected:
-int light;
-int wheel;
-public:
-CCAR() :light(2)
+
+/**
+ * @brief class CRC card的說明
+ * 以車子為例子來介紹class的用法
+ * 
+ */
+
+class CCAR {       ///< 型別
+private:           ///< 繼承方法-私有
+string nickname;   ///< 這是一個private的變數
+protected:         ///< 繼承方法-保護
+int light;         ///< @param 這是一個protected的變數,車燈
+int wheel;         ///< @param 這是另一個protected的變數,輪子
+public:            ///< 繼承方法-公共
+CCAR() :light(2)   ///< 建構子給值
 {
-wheel = 5;
+wheel = 5;         ///< 等號給值
 cout << "car's constructor(wheel=" << wheel << ")" << endl;
 }
 CCAR(string nickname) :light(2)
 {
 wheel = 5;
-this->nickname = nickname;
+this->nickname = nickname;    ///< this是因為nickname一樣,當參數與變量名相同時使用,使用箭號運算子
 cout << "car's constructor(nickname=" << nickname << ")" << endl;
 }
 ~CCAR()
 {
 cout << "car's destructor" << "(" << nickname << ")" << endl;
 }
+
+
 void start()
 {
 cout << "car's start" << endl;
@@ -37,6 +50,12 @@ void turn()
 cout << "car's turn" << endl;
 }
 };
+};
+/**
+ * @brief 描述
+ *
+ */
+ 
 //--------------------------
 class CBMW : public CCAR {
 public:
@@ -49,7 +68,7 @@ cout << "bmw's abs" << endl;
 void start()
 {
 cout << "bmw's start" << endl;
-CCAR::start();//scope operator
+CCAR::start();//scope operator   ///< ::是類別範圍解析運算子
 //CCAR c;
 //c.start();
 }
@@ -58,9 +77,14 @@ CCAR::start();//scope operator
 int main(int argc, const char * argv[]) {
 CBMW bmw;
 // bmw.light=3;
-bmw.start();
+bmw.start();    ///< 存取實例的值域時可以使用dot運算子
 bmw.Abs();
 bmw.stop();
 
 return 0;
 }
+/**
+ * @brief 透過這邊可存取的function去更改上面不能存取的function
+ * @return 傳回兩個參數相加的結果
+ *
+ */
